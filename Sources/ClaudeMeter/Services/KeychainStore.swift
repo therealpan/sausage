@@ -28,13 +28,12 @@ enum KeychainStore {
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: account,
+            kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
             kSecValueData: data
         ]
-        var status = SecItemAdd(query as CFDictionary, nil)
-        if status == errSecDuplicateItem {
-            let update: [CFString: Any] = [kSecValueData: data]
-            status = SecItemUpdate(query as CFDictionary, update as CFDictionary)
-        }
+        // Delete any existing item first (may have wrong accessibility from prior saves)
+        SecItemDelete(query as CFDictionary)
+        let status = SecItemAdd(query as CFDictionary, nil)
         if status != errSecSuccess {
             throw KeychainError.writeFailed(status)
         }
