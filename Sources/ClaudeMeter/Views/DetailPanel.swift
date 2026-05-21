@@ -28,6 +28,7 @@ struct DetailPanel: View {
         .frame(width: 400)
         .frame(minHeight: 480, maxHeight: 700)
         .background(Color(red: 0.059, green: 0.059, blue: 0.055))
+        .preferredColorScheme(.dark)
         .task { await state.refreshAll() }
     }
 }

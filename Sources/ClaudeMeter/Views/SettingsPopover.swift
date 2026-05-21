@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct SettingsPopover: View {
     @Environment(AppState.self) private var state
@@ -11,9 +12,24 @@ struct SettingsPopover: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Settings")
-                .font(.headline)
-                .foregroundStyle(.white)
+            HStack(spacing: 10) {
+                if let url = Bundle.module.url(forResource: "icon", withExtension: "png") ?? Bundle.main.url(forResource: "icon", withExtension: "png"),
+                   let nsImg = NSImage(contentsOf: url) {
+                    Image(nsImage: nsImg)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 44, height: 44)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("ClaudeMeter")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                    Text("Claude Max 20x monitor")
+                        .font(.caption2)
+                        .foregroundStyle(Color.white.opacity(0.35))
+                }
+            }
 
             // Token limit
             VStack(alignment: .leading, spacing: 6) {

@@ -8,8 +8,9 @@ struct MenuBarLabel: View {
         HStack(spacing: 4) {
             if let nsImg = menuBarImage {
                 Image(nsImage: nsImg)
-                    .renderingMode(.template)
-                    .foregroundStyle(state.menuBarColor)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16)
             } else {
                 PulseIndicator(color: state.menuBarColor, active: state.usagePercent > 0.85)
             }
@@ -20,10 +21,15 @@ struct MenuBarLabel: View {
     }
 
     private var menuBarImage: NSImage? {
-        if let url = Bundle.main.url(forResource: "menubar_icon", withExtension: "png"),
-           let img = NSImage(contentsOf: url) {
-            img.isTemplate = true
-            return img
+        let candidates: [URL?] = [
+            Bundle.module.url(forResource: "menubar_icon", withExtension: "png"),
+            Bundle.main.url(forResource: "menubar_icon", withExtension: "png")
+        ]
+        for url in candidates.compactMap({ $0 }) {
+            if let img = NSImage(contentsOf: url) {
+                img.isTemplate = true
+                return img
+            }
         }
         return nil
     }
