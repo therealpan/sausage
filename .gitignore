@@ -1,0 +1,4 @@
+.build/
+dist/
+*.resolved
+.DS_Store
