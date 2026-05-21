@@ -40,6 +40,7 @@ cat > "${APP_DIR}/Contents/Info.plist" << PLIST
   <key>NSHighResolutionCapable</key>   <true/>
   <key>NSPrincipalClass</key>          <string>NSApplication</string>
   <key>NSSupportsAutomaticTermination</key><false/>
+  <key>CFBundleIconFile</key>           <string>icon</string>
 </dict>
 </plist>
 PLIST

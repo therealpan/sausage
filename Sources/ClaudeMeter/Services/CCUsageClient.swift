@@ -51,6 +51,14 @@ actor CCUsageClient {
         return try Self.decoder.decode(BlocksResponse.self, from: Data(output.utf8))
     }
 
+    func fetchSessions(days: Int) async throws -> SessionResponse {
+        let since = Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyyMMdd"
+        let output = try await run(args: ["ccusage", "session", "--json", "--since", fmt.string(from: since)])
+        return try Self.decoder.decode(SessionResponse.self, from: Data(output.utf8))
+    }
+
     func fetchDailySince(days: Int) async throws -> DailyResponse {
         let since = Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
         let fmt = DateFormatter()

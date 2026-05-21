@@ -3,6 +3,7 @@ import Charts
 
 struct ModelsDonut: View {
     let models: [String]
+    var breakdowns: [ModelBreakdown]? = nil  // real token weights if available
 
     private struct Slice: Identifiable {
         let id: String
@@ -11,11 +12,21 @@ struct ModelsDonut: View {
     }
 
     private var slices: [Slice] {
-        guard !models.isEmpty else { return [] }
-        let weight = 1.0 / Double(models.count)
-        return models.map { model in
-            Slice(id: model, label: shortName(model), value: weight)
+        if let bkdn = breakdowns, !bkdn.isEmpty {
+            let total = Double(bkdn.reduce(0) { $0 + $1.outputTokens + $1.inputTokens })
+            guard total > 0 else { return equalSlices }
+            return bkdn.map { mb in
+                Slice(id: mb.modelName, label: shortName(mb.modelName),
+                      value: Double(mb.outputTokens + mb.inputTokens) / total)
+            }
         }
+        return equalSlices
+    }
+
+    private var equalSlices: [Slice] {
+        guard !models.isEmpty else { return [] }
+        let w = 1.0 / Double(models.count)
+        return models.map { Slice(id: $0, label: shortName($0), value: w) }
     }
 
     private func shortName(_ name: String) -> String {
