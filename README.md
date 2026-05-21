@@ -2,7 +2,7 @@
 
 # Sausage
 
-A lightweight macOS menu bar app that tracks your **Claude Max** token usage in real time — so you always know how much of your 5-hour block you've burned through.
+A lightweight macOS menu bar app that tracks your **Claude Code** token usage in real time — so you always know how much of your 5-hour block you've burned through. Works with any Claude Code plan (Pro, Max 5x, Max 20x).
 
 ## Features
 
@@ -24,9 +24,25 @@ A lightweight macOS menu bar app that tracks your **Claude Max** token usage in 
 | Requirement | Notes |
 |---|---|
 | macOS 14 Sonoma or later | Required for SwiftUI Charts and MenuBarExtra API |
-| [Claude Max subscription](https://claude.ai/upgrade) | Any plan; 20x plan recommended for heavier use |
-| [`ccusage`](https://github.com/ryoppippi/ccusage) CLI | Reads local Claude usage logs — no account needed |
+| [Claude Code](https://claude.com/claude-code) installed and used at least once | Sausage reads its local usage logs |
+| Any Claude subscription that includes Claude Code | Pro, Max 5x, or Max 20x — see [Plan compatibility](#plan-compatibility) |
+| [`ccusage`](https://github.com/ryoppippi/ccusage) CLI | Reads local Claude usage logs — no extra account needed |
 | Node.js 18+ | Required by ccusage |
+
+### Plan compatibility
+
+Sausage works with any plan that uses Claude Code's 5-hour usage blocks. Pick your plan in **Settings → Plan** and the token limit auto-fills:
+
+| Plan | Default 5h limit | Tracking | Admin API |
+|---|---|---|---|
+| **Pro** ($20/mo) | ~4.4M tokens | ✅ Full | ✅ if you have an Admin key |
+| **Max 5x** ($100/mo) | ~22M tokens | ✅ Full | ✅ |
+| **Max 20x** ($200/mo) | ~88M tokens | ✅ Full | ✅ |
+| **Custom** | You set it | ✅ Full | ✅ |
+| **Team / Enterprise** | Set as Custom | ✅ Full | ✅ |
+| **API only (no Claude Code)** | n/a — no 5h blocks | ⚠️ Limited | ✅ |
+
+The block-limit estimates above are community-derived approximations — Anthropic doesn't publish exact numbers. Adjust the Custom value to match your real-world usage if you see the ring fill too fast or too slow.
 
 ---
 
