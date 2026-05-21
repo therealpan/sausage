@@ -22,7 +22,7 @@ struct SettingsPopover: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("ClaudeMeter")
+                    Text("Sausage")
                         .font(.headline)
                         .foregroundStyle(.white)
                     Text("Claude Max 20x monitor")

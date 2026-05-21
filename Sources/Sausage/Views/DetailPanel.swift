@@ -41,7 +41,7 @@ private struct PanelHeader: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text("ClaudeMeter")
+                Text("Sausage")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.white)
                 if let refreshed = state.lastRefreshed {

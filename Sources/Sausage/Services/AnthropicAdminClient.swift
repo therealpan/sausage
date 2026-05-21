@@ -11,15 +11,15 @@ actor AnthropicAdminClient {
     private let apiVersion = "2023-06-01"
 
     var hasKey: Bool {
-        KeychainStore.read(service: "claudemeter", account: "anthropic-admin-key") != nil
+        KeychainStore.read(service: "sausage", account: "anthropic-admin-key") != nil
     }
 
     func saveKey(_ key: String) throws {
-        try KeychainStore.write(service: "claudemeter", account: "anthropic-admin-key", value: key)
+        try KeychainStore.write(service: "sausage", account: "anthropic-admin-key", value: key)
     }
 
     func fetchUsageReport(days: Int) async throws -> UsageReportResponse {
-        guard let key = KeychainStore.read(service: "claudemeter", account: "anthropic-admin-key") else {
+        guard let key = KeychainStore.read(service: "sausage", account: "anthropic-admin-key") else {
             throw AnthropicAdminError.noAPIKey
         }
         let url = try buildURL(
@@ -36,7 +36,7 @@ actor AnthropicAdminClient {
     }
 
     func fetchCostReport(days: Int) async throws -> CostReportResponse {
-        guard let key = KeychainStore.read(service: "claudemeter", account: "anthropic-admin-key") else {
+        guard let key = KeychainStore.read(service: "sausage", account: "anthropic-admin-key") else {
             throw AnthropicAdminError.noAPIKey
         }
         let url = try buildURL(

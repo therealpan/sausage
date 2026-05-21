@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-PRODUCT_NAME="ClaudeMeter"
-BUNDLE_ID="com.piirz.claudemeter"
+PRODUCT_NAME="Sausage"
+BUNDLE_ID="com.piirz.sausage"
 VERSION="1.0.0"
 APP_DIR="dist/${PRODUCT_NAME}.app"
 
@@ -17,8 +17,8 @@ mkdir -p "${APP_DIR}/Contents/Resources"
 cp ".build/release/${PRODUCT_NAME}" "${APP_DIR}/Contents/MacOS/${PRODUCT_NAME}"
 
 # Copy resources (icons, etc.)
-if [ -d "Sources/ClaudeMeter/Resources" ]; then
-  cp -r Sources/ClaudeMeter/Resources/. "${APP_DIR}/Contents/Resources/"
+if [ -d "Sources/Sausage/Resources" ]; then
+  cp -r Sources/Sausage/Resources/. "${APP_DIR}/Contents/Resources/"
 fi
 
 cat > "${APP_DIR}/Contents/Info.plist" << PLIST
@@ -30,7 +30,7 @@ cat > "${APP_DIR}/Contents/Info.plist" << PLIST
   <key>CFBundleExecutable</key>        <string>${PRODUCT_NAME}</string>
   <key>CFBundleIdentifier</key>        <string>${BUNDLE_ID}</string>
   <key>CFBundleName</key>              <string>${PRODUCT_NAME}</string>
-  <key>CFBundleDisplayName</key>       <string>ClaudeMeter</string>
+  <key>CFBundleDisplayName</key>       <string>Sausage</string>
   <key>CFBundleVersion</key>           <string>${VERSION}</string>
   <key>CFBundleShortVersionString</key><string>${VERSION}</string>
   <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>

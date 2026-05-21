@@ -1,15 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
-BUNDLE_ID="com.piirz.claudemeter"
+BUNDLE_ID="com.piirz.sausage"
 PLIST_PATH="${HOME}/Library/LaunchAgents/${BUNDLE_ID}.plist"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_PATH="${SCRIPT_DIR}/../dist/ClaudeMeter.app"
-EXECUTABLE="${APP_PATH}/Contents/MacOS/ClaudeMeter"
-LOG_DIR="${HOME}/Library/Logs/ClaudeMeter"
+APP_PATH="${SCRIPT_DIR}/../dist/Sausage.app"
+EXECUTABLE="${APP_PATH}/Contents/MacOS/Sausage"
+LOG_DIR="${HOME}/Library/Logs/Sausage"
 
 if [ ! -f "${EXECUTABLE}" ]; then
-  echo "Error: ClaudeMeter.app not found. Run Scripts/build-app.sh first."
+  echo "Error: Sausage.app not found. Run Scripts/build-app.sh first."
   exit 1
 fi
 

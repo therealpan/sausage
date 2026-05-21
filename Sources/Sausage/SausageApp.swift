@@ -1,16 +1,16 @@
 import SwiftUI
 
 @main
-struct ClaudeMeterApp: App {
-    @State private var appState = AppState()
+struct SausageApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         MenuBarExtra {
             DetailPanel()
-                .environment(appState)
+                .environment(appDelegate.appState)
         } label: {
             MenuBarLabel()
-                .environment(appState)
+                .environment(appDelegate.appState)
         }
         .menuBarExtraStyle(.window)
     }

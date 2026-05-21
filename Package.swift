@@ -2,14 +2,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "ClaudeMeter",
+    name: "Sausage",
     platforms: [
         .macOS(.v14)
     ],
     targets: [
         .executableTarget(
-            name: "ClaudeMeter",
-            path: "Sources/ClaudeMeter",
+            name: "Sausage",
+            path: "Sources/Sausage",
             resources: [
                 .process("Resources")
             ]
